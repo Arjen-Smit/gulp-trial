@@ -1,0 +1,19 @@
+{
+  "name": "Frontend",
+  "version": "1.0.0",
+  "homepage": "https://github.com/Arjen-Smit/gulp-trial",
+  "authors": [
+    "Arjen Smit <arjen@connectholland.nl>"
+  ],
+  "license": "Connect Holland",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3"
+  }
+}

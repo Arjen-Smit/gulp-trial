@@ -1,0 +1,11 @@
+{
+  "name": "Frontend",
+  "version": "1.0.0",
+  "description": "Standard package file",
+  "dependencies": {
+    "gulp": "^3.8.11"
+  },
+  "devDependencies": {},
+  "author": "Arjen Smit",
+  "license": "Connect Holland"
+}
