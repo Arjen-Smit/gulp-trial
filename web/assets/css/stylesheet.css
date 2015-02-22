@@ -1,1 +1,1 @@
-*,*:before,*:after{box-sizing:padding-box}body{padding:0;margin:0;background-color:#dedede;color:#c22}
+*,*:before,*:after{box-sizing:padding-box}body{padding:0;margin:0;display:-webkit-flex;display:flex;background-color:#dedede;color:#c22}body img{-webkit-filter:invert(.8);filter:invert(.8);opacity:.5}

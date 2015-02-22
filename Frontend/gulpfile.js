@@ -5,14 +5,15 @@ var     productionDefualtEnviorment = true;
 
 /* Gulp Requirements */
 var     gulp = require('gulp'),
-        uglify = require('gulp-uglify'),
+    uglify = require('gulp-uglify'),
         concat = require('gulp-concat'),
         sourcemaps = require ('gulp-sourcemaps'),
         gulpif = require('gulp-if'),
         livereload = require('gulp-livereload'),
         plumber = require('gulp-plumber')
         sass = require('gulp-sass'),
-        csso = require('gulp-csso');
+        csso = require('gulp-csso'),
+        autoprefixer = require('gulp-autoprefixer');
 
 /* Executable tasks */
 gulp.task('default', function() {
@@ -42,6 +43,11 @@ gulp.task('sass', function () {
             { includePaths : ['scss/'] 
             }
         ))
+        .pipe(autoprefixer({
+            browsers: ['> 5% in NL'],
+            cascade: true,
+            remove: true
+        }))
         .pipe(gulpif(productionDefualtEnviorment, csso(), sourcemaps.write('../maps')))
         .pipe(gulp.dest(assetsDirectory + 'css/'))
         .pipe(livereload());

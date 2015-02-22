@@ -1,4 +1,10 @@
 body {
     background-color: #dedede;
     color: #c22;
+    img {
+        filter: invert(.8);
+        opacity: .5;
+        
+        
+    }
 }
