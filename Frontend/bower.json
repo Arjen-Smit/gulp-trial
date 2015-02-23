@@ -5,7 +5,7 @@
   "authors": [
     "Arjen Smit <arjen@connectholland.nl>"
   ],
-  "license": "Connect Holland",
+  "license": "Alnitak",
   "ignore": [
     "**/.*",
     "node_modules",
