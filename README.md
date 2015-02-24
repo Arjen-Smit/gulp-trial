@@ -25,3 +25,7 @@ Files are not optimized, uglifyed but will include sourcemaps
 gulp watch
 ```
 Files are not optimized, uglifyed but will include sourcemaps, this process will keep running monitoring for changes and firing livereload when needed.
+
+### ToDo list
+fonticons
+sprites
