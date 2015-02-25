@@ -5,7 +5,9 @@ var     productionDefualtEnviorment = true;
 
 /* Gulp Requirements */
 var     gulp = require('gulp'),
-    uglify = require('gulp-uglify'),
+        gutil = require('gulp-util'),
+        uglify = require('gulp-uglify'),
+        bower = require('bower'),
         concat = require('gulp-concat'),
         sourcemaps = require ('gulp-sourcemaps'),
         gulpif = require('gulp-if'),
@@ -13,7 +15,8 @@ var     gulp = require('gulp'),
         plumber = require('gulp-plumber')
         sass = require('gulp-sass'),
         csso = require('gulp-csso'),
-        autoprefixer = require('gulp-autoprefixer');
+        autoprefixer = require('gulp-autoprefixer'),
+        sh = require('shelljs');
 
 /* Executable tasks */
 gulp.task('default', function() {
@@ -76,4 +79,23 @@ gulp.task('body-js', function() {
     .pipe(gulpif(productionDefualtEnviorment, uglify(), sourcemaps.write('../maps')))
     .pipe(gulp.dest(assetsDirectory + 'javascript/'))
     .pipe(livereload());;
+});
+
+gulp.task('install', ['bin-check'], function() {
+  return bower.commands.install()
+    .on('log', function(data) {
+      gutil.log('bower', gutil.colors.cyan(data.id), data.message);
+    });
+});
+
+gulp.task('bin-check', function(done) {
+  if (!sh.which('git')) {
+    console.log('  ' + gutil.colors.red('Git is not installed.'));
+    process.exit(1);
+  }
+  if (!sh.which('svn')) {
+    console.log('  ' + gutil.colors.red('Subversion is not installed.'));
+    process.exit(1);
+  }
+  done();
 });
