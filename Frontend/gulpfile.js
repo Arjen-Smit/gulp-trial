@@ -19,13 +19,13 @@ var     gulp = require('gulp'),
         sh = require('shelljs');
 
 /* Executable tasks */
-gulp.task('default', function() {
+gulp.task('default', ['install'], function() {
     gulp.start('head-js');
     gulp.start('body-js');
     gulp.start('sass');
 });
 
-gulp.task('dev', function() {
+gulp.task('dev', ['install'], function() {
     productionDefualtEnviorment = false;
     gulp.start('default');
 });
@@ -81,6 +81,7 @@ gulp.task('body-js', function() {
     .pipe(livereload());;
 });
 
+/* bower install */
 gulp.task('install', ['bin-check'], function() {
   return bower.commands.install()
     .on('log', function(data) {
@@ -88,6 +89,7 @@ gulp.task('install', ['bin-check'], function() {
     });
 });
 
+/* bin check, a list of apps that need to be installed localy but that gulp can't install */
 gulp.task('bin-check', function(done) {
   if (!sh.which('git')) {
     console.log('  ' + gutil.colors.red('Git is not installed.'));
