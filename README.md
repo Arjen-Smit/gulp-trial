@@ -5,7 +5,6 @@ Setting up a gulp trial to manage different processes
 ```console
 cd Frontend
 (sudo) npm install
-bower install
 ```
 
 ### Run Gulp for production
