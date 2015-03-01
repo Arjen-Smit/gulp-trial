@@ -14,7 +14,7 @@
 
 $<%= fontName %>: <% _.each(glyphs, function(glyph) { %>$<%= fontName %>-<%= glyph.name %> <% }); %>;
 
-@mixin <%= fontName %>($name, $size: 16px) {
+@mixin <%= fontName %>($name) {
     &:<%= pseudo %> {
         @each $icon in $<%= fontName %> {
             $n: index($icon, $name);
@@ -22,10 +22,10 @@ $<%= fontName %>: <% _.each(glyphs, function(glyph) { %>$<%= fontName %>-<%= gly
                 @include  <%= fontName %>-content($icon);
             }
         }
-        font-size: $size;
         font-family: "<%= fontName %>";
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        @content;
     }
 }
 

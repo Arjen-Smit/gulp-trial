@@ -4,5 +4,8 @@
 @import "generated/fonticons.scss";
 
 h1 {
-    @include fonticon(users, 160px);
+    @include fonticon(users) {
+        color: navy;
+        opacity: .4;
+    }
 }
