@@ -1,2 +1,8 @@
 @import "layout/main";
 @import "style/main";
+
+@import "generated/fonticons.scss";
+
+h1 {
+    @include fonticon(users, 160px);
+}

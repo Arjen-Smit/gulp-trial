@@ -16,21 +16,23 @@ var     gulp = require('gulp'),
         sass = require('gulp-sass'),
         csso = require('gulp-csso'),
         autoprefixer = require('gulp-autoprefixer'),
-        sh = require('shelljs');
+        sh = require('shelljs'),
+        iconfont = require('gulp-iconfont'),
+        consolidate = require('gulp-consolidate');
 
 /* Executable tasks */
-gulp.task('default', ['install'], function() {
+gulp.task('default', ['install','iconfont'], function() {
     gulp.start('head-js');
     gulp.start('body-js');
     gulp.start('sass');
 });
 
-gulp.task('dev', ['install'], function() {
+gulp.task('dev', ['install','iconfont'], function() {
     productionDefualtEnviorment = false;
     gulp.start('default');
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', ['iconfont'], function() {
     productionDefualtEnviorment = false;
     livereload.listen();
     gulp.watch(['./javascript/*.js', './bower_components/*.js'], ['head-js','body-js']);
@@ -79,6 +81,25 @@ gulp.task('body-js', function() {
     .pipe(gulpif(productionDefualtEnviorment, uglify(), sourcemaps.write('../maps')))
     .pipe(gulp.dest(assetsDirectory + 'javascript/'))
     .pipe(livereload());;
+});
+
+gulp.task('iconfont', function(done){
+  gulp.src(['fonticons/*.svg'])
+    .pipe(iconfont({ 
+        fontName: 'fonticon',
+        fixedWidth: true }))
+    .on('codepoints', function(codepoints, options) {
+      gulp.src('scss/templates/_fonticons.scss')
+        .pipe(consolidate('lodash', {
+          glyphs: codepoints,
+          fontName: 'fonticon',
+          fontPath: '/assets/fonts/',
+          pseudo: 'before'
+        }))
+        .pipe(gulp.dest('scss/generated/'));
+    })
+    .pipe(gulp.dest(assetsDirectory + 'fonts/'));
+    done();
 });
 
 /* bower install */
